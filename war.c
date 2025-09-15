@@ -20,3 +20,33 @@ int main(void) {
     printf("Estrutura criada e vetor alocado.\n");
     return 0;
 }
+#include <stdio.h>
+
+// Struct simples para o cadastro
+typedef struct {
+    char nome[30];
+    char cor[10];
+    int tropas;
+} Territorio;
+
+int main(void) {
+    Territorio territorios[5];
+
+    printf("=== Cadastro de Territorios ===\n");
+    for (int i = 0; i < 5; i++) {
+        printf("\nTerritorio %d\n", i + 1);
+
+        // Leitura simples, sem espaços, com limites de tamanho
+        printf("Digite o nome do territorio: ");
+        scanf("%29s", territorios[i].nome);
+
+        printf("Digite a cor do exercito: ");
+        scanf("%9s", territorios[i].cor);
+
+        printf("Digite a quantidade de tropas: ");
+        scanf("%d", &territorios[i].tropas);
+    }
+
+    printf("\nCadastro concluido.\n");
+    return 0;
+}
