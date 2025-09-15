@@ -18,7 +18,8 @@ int main(void) {
         printf("Digite o nome do territorio: ");
         scanf("%29s", territorios[i].nome);
 
-        printf("Digite a cor do exercito: ");
+        // Mensagem com instrução e exemplos
+        printf("Digite a cor do exercito (ex: Azul, Verde): ");
         scanf("%9s", territorios[i].cor);
 
         printf("Digite a quantidade de tropas: ");
