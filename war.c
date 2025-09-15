@@ -7,18 +7,26 @@ typedef struct {
     int tropas;
 } Territorio;
 
-int main() {
-    // Criando 5 territórios pré-cadastrados
-    Territorio territorios[5] = {
-        {"America", "Azul", 6},
-        {"Europa", "Verde", 8},
-        {"Asia", "Vermelho", 10},
-        {"Africa", "Amarelo", 7},
-        {"Oceania", "Preto", 5}
-    };
+int main(void) {
+    Territorio territorios[5];
 
-    // Exibindo o mapa do mundo
-    printf("=== MAPA DO MUNDO ===\n");
+    // Cadastro dos territórios
+    printf("=== Cadastro de Territorios ===\n");
+    for (int i = 0; i < 5; i++) {
+        printf("\nTerritorio %d\n", i + 1);
+
+        printf("Digite o nome do territorio: ");
+        scanf("%29s", territorios[i].nome);
+
+        printf("Digite a cor do exercito (ex: Azul, Verde): ");
+        scanf("%9s", territorios[i].cor);
+
+        printf("Digite a quantidade de tropas: ");
+        scanf("%d", &territorios[i].tropas);
+    }
+
+    // Exibição em formato de mapa do mundo
+    printf("\n=== MAPA DO MUNDO ===\n");
     for (int i = 0; i < 5; i++) {
         printf("\nTERRITORIO %d:\n", i + 1);
         printf("- Nome: %s\n", territorios[i].nome);
