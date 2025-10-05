@@ -9,7 +9,6 @@ typedef struct {
     int tropas;
 } Territorio;
 
-/* Protótipos */
 Territorio* alocarMapa(int n);
 void cadastrarTerritorios(Territorio* mapa, int n);
 void exibirMapa(const Territorio* mapa, int n);
@@ -21,7 +20,6 @@ int main(void) {
     setbuf(stdout, NULL);
     srand((unsigned)time(NULL));
 
-    /* Para este nível, manteremos 5 posições, mas usando alocação dinâmica */
     int n = 5;
     Territorio* mapa = alocarMapa(n);
     if (!mapa) {
@@ -33,7 +31,6 @@ int main(void) {
 
     while (1) {
         exibirMapa(mapa, n);
-
         printf("\nFase de ataque, escolha atacante e defensor.\n");
         printf("Digite 0 para sair.\n");
 
@@ -74,12 +71,10 @@ int main(void) {
     return 0;
 }
 
-/* Aloca dinamicamente e zera os campos */
 Territorio* alocarMapa(int n) {
     return (Territorio*)calloc((size_t)n, sizeof(Territorio));
 }
 
-/* Cadastro básico, igual ao nível Novato */
 void cadastrarTerritorios(Territorio* mapa, int n) {
     printf("=== Cadastro de Territorios ===\n");
     for (int i = 0; i < n; i++) {
@@ -95,7 +90,6 @@ void cadastrarTerritorios(Territorio* mapa, int n) {
     }
 }
 
-/* Apenas leitura, const para deixar claro */
 void exibirMapa(const Territorio* mapa, int n) {
     printf("\nMAPA DO MUNDO, ESTADO ATUAL\n");
     for (int i = 0; i < n; i++) {
@@ -104,7 +98,6 @@ void exibirMapa(const Territorio* mapa, int n) {
     }
 }
 
-/* Lê índice, retorna -1 se o usuário digitar 0 na hora do atacante */
 int escolherIndice(const char* rotulo, int n) {
     int idx;
     printf("%s: ", rotulo);
@@ -114,13 +107,6 @@ int escolherIndice(const char* rotulo, int n) {
     return idx - 1;
 }
 
-/* Simulação do ataque
-   Regras:
-   dadoA = 1..6, dadoD = 1..6
-   empate favorece o atacante, ou seja, dadoA >= dadoD faz o defensor perder 1 tropa
-   se defensor chegar a 0, muda de cor para a do atacante e recebe 1 tropa
-   o atacante cede 1 tropa para ocupar, se tiver pelo menos 2
-*/
 void atacar(Territorio* atacante, Territorio* defensor) {
     int dadoA = (rand() % 6) + 1;
     int dadoD = (rand() % 6) + 1;
@@ -149,7 +135,6 @@ void atacar(Territorio* atacante, Territorio* defensor) {
     }
 }
 
-/* Libera a memória do vetor dinâmico */
 void liberarMemoria(Territorio* mapa) {
     free(mapa);
 }
