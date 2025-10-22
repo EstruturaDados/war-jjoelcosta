@@ -177,15 +177,13 @@ void exibirMissaoTopo(const char* missao, const char* corJogador) {
     printf("%s\n", missao);
 }
 
-int menu(void) {
-    int op;
+static int menu(void) {
     printf("\n--- MENU DE ACOES ---\n");
     printf("1 - Atacar\n");
     printf("2 - Verificar Missao\n");
     printf("0 - Sair\n");
-    printf("Escolha sua acao: ");
-    if (scanf("%d", &op) != 1) return 0;
-    return op;
+    /* retorna 0, 1 ou 2, sem travar nem apagar o dígito */
+    return ler_int("Escolha sua acao: ", 0, 2, 1);
 }
 
 int validarAtaque(const Territorio* atacante, const Territorio* defensor) {
