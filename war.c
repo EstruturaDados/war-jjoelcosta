@@ -102,17 +102,24 @@ int main(void) {
         if (opc == 0) break;
 
         if (opc == 1) {
-            int a, d;
-            printf("\n--- FASE DE ATAQUE ---\n");
-            printf("Escolha o territorio atacante (1 a %d): ", n);
-            scanf("%d", &a);
-            printf("Escolha o territorio defensor (1 a %d): ", n);
-            scanf("%d", &d);
+    int a, d;
+    printf("\n--- FASE DE ATAQUE ---\n");
 
-            if (a < 1 || a > n || d < 1 || d > n) { printf("Indice invalido.\n"); pausar(); continue; }
-            a -= 1; d -= 1;
+    a = ler_int("Escolha o territorio atacante (1 a 5): ", 1, n, 0);
+    d = ler_int("Escolha o territorio defensor (1 a 5): ", 1, n, 0);
 
-            if (!validarAtaque(&mapa[a], &mapa[d])) { pausar(); continue; }
+    /* converte para indice 0-based */
+    a -= 1;
+    d -= 1;
+
+    if (!validarAtaque(&mapa[a], &mapa[d])) {
+        pausar();
+        continue;
+    }
+
+    /* segue com o ataque... */
+}
+
 
             /* resultado no formato do professor */
             int dadoA = (rand() % 6) + 1;
