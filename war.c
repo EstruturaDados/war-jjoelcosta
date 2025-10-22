@@ -24,6 +24,37 @@ int verificarMissaoCumprida(const char* missao, const char* corJogador, const Te
 
 void liberarTudo(Territorio* mapa, char* missao);
 
+/* leitura robusta de inteiros via fgets + strtol */
+static int ler_int(const char* prompt, int min, int max, int permite_zero) {
+    char buf[64];
+    long v;
+    char *end;
+
+    while (1) {
+        if (prompt && *prompt) printf("%s", prompt);
+        if (!fgets(buf, sizeof buf, stdin)) return 0; /* EOF */
+
+        v = strtol(buf, &end, 10);
+        /* ignora espaços finais */
+        while (*end == ' ' || *end == '\t' || *end == '\r' || *end == '\n') end++;
+
+        /* só aceita se sobrou nada e o valor está no intervalo */
+        if (*end == '\0') {
+            if (permite_zero && v == 0) return 0; /* usamos 0 como “sair” */
+            if (v >= min && v <= max) return (int)v;
+        }
+        printf("Entrada invalida. Tente novamente.\n");
+    }
+}
+
+/* substitui a sua pausar() por uma que consome a linha inteira */
+static void pausar(void) {
+    char tmp[8];
+    printf("\nPressione Enter para continuar...");
+    fgets(tmp, sizeof tmp, stdin);
+}
+
+
 int menu(void);
 
 int main(void) {
