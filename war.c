@@ -9,12 +9,20 @@ typedef struct {
     int tropas;
 } Territorio;
 
+/* Protótipos */
 Territorio* alocarMapa(int n);
 void cadastrarTerritorios(Territorio* mapa, int n);
 void exibirMapa(const Territorio* mapa, int n);
-int escolherIndice(const char* rotulo, int n);
+void pausar(void);
+
+int validarAtaque(const Territorio* atacante, const Territorio* defensor);
 void atacar(Territorio* atacante, Territorio* defensor);
-void liberarMemoria(Territorio* mapa);
+
+void atribuirMissao(char* destino, char* missoes[], int totalMissoes);
+void exibirMissaoTopo(const char* missao, const char* corJogador);
+int verificarMissaoCumprida(const char* missao, const char* corJogador, const Territorio* mapa, int n);
+
+void liberarTudo(Territorio* mapa, char* missao);
 
 int main(void) {
     setbuf(stdout, NULL);
